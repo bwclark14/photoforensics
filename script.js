@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ];
 
     const comments = [
-        "Beautiful sunrise", "Peaceful lake", "Mountain view", "City skyline",
+        "My Cat", "Lego STreet", "Mountain view", "City skyline",
         "Autumn leaves", "Snowy forest", "Desert dunes", "Ocean waves",
         "Countryside road", "Cherry blossoms", "Rainy night", "Northern lights"
     ];
