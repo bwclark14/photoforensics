@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const imageFiles = [
-        "cat.jpg", "quino-al-mBQIfKlvowM-unsplash", "image3.jpg", "image4.jpg",
+        "cat.jpg", "image2.jpg", "image3.jpg", "image4.jpg",
         "image5.jpg", "image6.jpg", "image7.jpg", "image8.jpg",
         "image9.jpg", "image10.jpg", "image11.jpg", "image12.jpg"
     ];
@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
         metadataDiv.classList.add("metadata");
         metadataDiv.style.display = "none";
 
+        // Convert Degrees, Minutes, Seconds (DMS) to Decimal Coordinates
         function convertDMSToDecimal(dms, direction) {
             if (!dms) return null;
             let decimal = dms[0] + dms[1] / 60 + dms[2] / 3600;
@@ -43,12 +44,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 EXIF.getData(img, function () {
                     let exifData = EXIF.getAllTags(this);
 
+                    // Extract GPS Data
                     let latitude = convertDMSToDecimal(exifData.GPSLatitude, exifData.GPSLatitudeRef);
                     let longitude = convertDMSToDecimal(exifData.GPSLongitude, exifData.GPSLongitudeRef);
                     let gpsLink = latitude && longitude
                         ? `<br><strong>📍 Location:</strong> <a href="https://www.google.com/maps?q=${latitude},${longitude}" target="_blank">View on Google Maps</a>`
-                        : "";
+                        : "<br><strong>📍 Location:</strong> Not Available";
 
+                    // Metadata Display
                     let metadataText = `
                         <strong>👤 Creator:</strong> ${exifData.Artist || "Unknown"}<br>
                         <strong>© Copyright:</strong> ${exifData.Copyright || "Unknown"}<br>
